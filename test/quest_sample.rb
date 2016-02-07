@@ -3,8 +3,8 @@ class QuestSample
   def self.load
   # Exemple de structure de données idéale pour une quête
     { quest: {        title: "Bundler et le Gemfile",
-                      goals: "new quest goals here",
-                description: "new quest description here\n another line" },
+                      goals: "Déclarer les dépendances d'un projet",
+                description: "Quand tu apprends de nouvelles notions" },
       steps: [ { title: "step1",
                 description: "step1",
                 resources: [ { title: "Da best ressource ever",
