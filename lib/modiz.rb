@@ -1,6 +1,7 @@
 require 'modiz/version'
 require 'quest_builder'
 require 'challenge_builder'
+require 'steps_builder'
 
 module Modiz
   class MdToHash
@@ -10,7 +11,7 @@ module Modiz
 
     def run
       {     quest: QuestBuilder.new(quest_lines).to_hash,
-             step: "",
+            steps: StepsBuilder.new(steps_string).to_array,
         challenge: ChallengeBuilder.new(challenge_lines).to_hash }
     end
 
@@ -20,8 +21,8 @@ module Modiz
       @lines[0...steps_index]
     end
 
-    def steps_lines
-      @lines[steps_index...challenge_index]
+    def steps_string
+      @lines[steps_index + 1...challenge_index].join.strip
     end
 
     def challenge_lines

@@ -16,10 +16,16 @@ module Modiz
     end
 
     def test_returns_challenge_part
-      assert_equal @output[:challenge][:title],       @run_case[:challenge][:title]
+      assert_equal @output[:challenge][:title], @run_case[:challenge][:title]
       assert_equal 3, @run_case[:challenge][:criteria].count
-      assert_match @output[:challenge][:criteria].first,    @run_case[:challenge][:criteria].first
+      assert_match @output[:challenge][:criteria].first, @run_case[:challenge][:criteria].first
       assert_match @output[:challenge][:description], @run_case[:challenge][:description]
+    end
+
+    def test_returns_step_part
+      assert_equal 3, @run_case[:steps].count
+      assert_equal @output[:steps].first[:title], @run_case[:steps].first[:title]
+      assert_match @output[:steps].first[:description], @run_case[:steps].first[:description]
     end
   end
 end

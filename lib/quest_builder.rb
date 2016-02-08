@@ -8,9 +8,9 @@ module Modiz
     end
 
     def to_hash
-      { title: title,
-      description: description,
-      goal: goal }
+      {       title: title,
+        description: description,
+               goal: goal }
     end
 
     private

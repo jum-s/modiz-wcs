@@ -25,7 +25,7 @@ module Modiz
     def criterias
       @lines[criterias_index + 1...-1]
         .select{ |a| a.match(/^\*(.*)|\+(.*)|\-(.*)$/)}
-        .map(&:strip)
+        .map{ |goal| goal[/\w(.*)$/].strip}
     end
 
     def title_index
