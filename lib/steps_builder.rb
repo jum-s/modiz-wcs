@@ -1,3 +1,4 @@
+require 'resources_builder'
 require 'pry'
 
 module Modiz
@@ -15,23 +16,19 @@ module Modiz
     private
 
     def steps
-      @lines.split("\n### ").select{|step| step unless step.empty?}
+      @lines.split("\n### ").reject(&:empty?)
     end
 
     def step_builder
       steps.map do |step|
         {     title: title(step),
         description: description(step),
-          resources: resources(step) }
+          resources: ResourcesBuilder.new(step).to_hash }
       end
     end
 
     def title(step)
       step.split("\n\n").first[/\w(.*)$/]
-    end
-
-    def resources(step)
-      step.split("#### Ressources").last
     end
 
     def description(step)

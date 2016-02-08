@@ -10,22 +10,34 @@ module Modiz
     end
 
     def test_returns_quest_part
-      assert_equal @output[:quest][:title], @run_case[:quest][:title]
-      assert_match @output[:quest][:description], @run_case[:quest][:description]
-      assert_match @output[:quest][:goals], @run_case[:quest][:goal].first
+      expected = @output[:quest]
+      quest_hash = @run_case[:quest]
+
+      assert_equal expected[:title], quest_hash[:title]
+      assert_match expected[:description], quest_hash[:description]
+      assert_match expected[:goals], quest_hash[:goal].first
     end
 
     def test_returns_challenge_part
-      assert_equal @output[:challenge][:title], @run_case[:challenge][:title]
-      assert_equal 3, @run_case[:challenge][:criteria].count
-      assert_match @output[:challenge][:criteria].first, @run_case[:challenge][:criteria].first
-      assert_match @output[:challenge][:description], @run_case[:challenge][:description]
+      expected = @output[:challenge]
+      challenge_hash = @run_case[:challenge]
+
+      assert_equal expected[:title], challenge_hash[:title]
+      assert_equal 3, challenge_hash[:criteria].count
+      assert_match expected[:criteria].first, challenge_hash[:criteria].first
+      assert_match expected[:description], challenge_hash[:description]
     end
 
     def test_returns_step_part
+      expected = @output[:steps].first
+      steps_hash = @run_case[:steps].first
+
       assert_equal 3, @run_case[:steps].count
-      assert_equal @output[:steps].first[:title], @run_case[:steps].first[:title]
-      assert_match @output[:steps].first[:description], @run_case[:steps].first[:description]
+      assert_equal expected[:title], steps_hash[:title]
+      assert_match expected[:description], steps_hash[:description]
+
+      assert_equal 3, @run_case[:steps].first[:resources].count
+      assert_match expected[:resources].first[:title], steps_hash[:resources].first[:title]
     end
   end
 end

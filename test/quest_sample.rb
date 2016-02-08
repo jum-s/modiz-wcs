@@ -7,7 +7,7 @@ class QuestSample
                 description: "Quand tu apprends de nouvelles notions" },
       steps: [ { title: "Gérer les dépendances d'un projet",
                 description: "Plutot que d'installer les dépendances à la main",
-                resources: [ { title: "Da best ressource ever",
+                resources: [ { title: "Bundler's Purpose and Rationale",
                                url: "http://www.izap4u.com",
                                tag: ["foo", "bar", "baz"]},
                              { title: "This is da best ressource ever",
