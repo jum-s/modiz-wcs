@@ -21,9 +21,11 @@ class QuestSample
                                tag: ["buz"]
                               } ]
                 } ],
-      challenge: { title: "You can do it",
-                    description: "Another desc",
-                    criteria: [ "this", "and", "that" ]
+      challenge: { title: "Encoder du texte dans un QR Code",
+                    description: "Ta mission si tu l'acceptes est d'écrire un programme qui transforme une chaîne de caractères en un QRCode.",
+                    criteria: [ "Le QRcode s'affiche dans la console",
+                                "Quand je scanne l'image générée je retrouve bien le texte qui a été encodé",
+                                "La commande `bundle install` lancée depuis la racine du répertoire installe la gem" ]
                    }
     }
   end

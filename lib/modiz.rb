@@ -1,42 +1,39 @@
 require 'modiz/version'
-require 'pry'
-module Modiz
+require 'quest_builder'
+require 'challenge_builder'
 
+module Modiz
   class MdToHash
     def initialize(quest_file)
       @lines = quest_file.lines
     end
 
     def run
-      quest_hash = {quest: quest_builder}
+      {     quest: QuestBuilder.new(quest_lines).to_hash,
+             step: "",
+        challenge: ChallengeBuilder.new(challenge_lines).to_hash }
     end
 
     private
 
-    def quest_builder
-      Hash[ title: title,
-            description: description,
-            goal: goal ]
+    def quest_lines
+      @lines[0...steps_index]
     end
 
-    def title
-      @lines.first.tr("#", "").strip
+    def steps_lines
+      @lines[steps_index...challenge_index]
     end
 
-    def goal
-      @lines[goal_index + 1...steps_index].join.strip
-    end
-
-    def description
-      @lines[1...goal_index].join.strip
-    end
-
-    def goal_index
-      @lines.index {|s| s.include?("## Objectifs")}
+    def challenge_lines
+      @lines[challenge_index..-1]
     end
 
     def steps_index
       @lines.index {|s| s.include?("## Etapes")}
+    end
+
+    def challenge_index
+      @lines.index {|s| s.include?("## Challenge")}
     end
   end
 end
