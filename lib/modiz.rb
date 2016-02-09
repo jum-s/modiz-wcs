@@ -4,7 +4,7 @@ require 'challenge_builder'
 require 'steps_builder'
 
 module Modiz
-  class MdToHash
+  class MdToHquest
     def initialize(quest_file)
       @lines = quest_file.lines
     end

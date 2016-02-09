@@ -2,11 +2,11 @@ require 'test_helper'
 require './test/quest_sample'
 
 module Modiz
-  class MdToHashTest < Minitest::Test
+  class MdToHquestTest < Minitest::Test
     def setup
       quest_file = File.read('./test/bundler_et_le_gemfile.md')
       @output = QuestSample.load
-      @run_case = MdToHash.new(quest_file).run
+      @run_case = MdToHquest.new(quest_file).run
     end
 
     def test_returns_quest_part
