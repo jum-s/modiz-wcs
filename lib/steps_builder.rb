@@ -5,12 +5,12 @@ module Modiz
   class StepsBuilder
     attr_reader :to_array
 
-    def initialize(steps_string)
-      @lines = steps_string
+    def initialize(lines)
+      @steps_ary = lines.split(title_hashtags(3)).reject(&:empty?)
     end
 
     def to_array
-      steps.map do |step|
+      @steps_ary.map do |step|
         {     title: title(step),
         description: description(step),
           resources: resources(step) }
@@ -19,29 +19,35 @@ module Modiz
 
     private
 
-    def steps
-      @lines.split("\n### ").reject(&:empty?)
+    def split_on_resource step
+      step.split("#### Ressources")
     end
 
-    def resources(step)
-      if step.match "#### Ressources"
-        ress = step.split("#### Ressources").last
-        ResourcesBuilder.new(ress).to_hash
+    def resources step
+      if step.match title_hashtags(4)
+        ressources = split_on_resource(step).last
+        ResourcesBuilder.new(ressources).to_hash
       else
         nil
       end
     end
 
-    def title(step)
-      step.split("\n\n").first[/\w(.*)$/]
+    def title step
+      step.split(double_line).first[/\w(.*)$/]
     end
 
-    def description(step)
-      desc = step.split("#### Ressources")
-                 .first
-                 .split("\n\n")
+    def description step
+      desc = split_on_resource(step).first.split(double_line)
       desc.shift
-      desc.join
+      desc.join(double_line)
+    end
+
+    def title_hashtags size
+      "\n#{"#" * size} "
+    end
+
+    def double_line
+      "\n\n"
     end
   end
 end

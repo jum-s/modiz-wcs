@@ -1,7 +1,7 @@
 module Modiz
   class ResourcesBuilder
     def initialize resources
-      @resources = resources.strip.split("\n*")
+      @resources = resources.strip.split("\n* ")
     end
 
     attr_reader :to_hash
