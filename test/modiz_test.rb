@@ -1,12 +1,12 @@
 require 'test_helper'
-require './test/quest_sample'
+require 'yaml'
 
 
 module Modiz
   class MdToHquestTest < Minitest::Test
     def setup
       quest_file = File.read('./test/bundler_et_le_gemfile.md')
-      @output = QuestSample.load
+      @output = YAML.load(File.open("./test/quest_output.yml"))
       @run_case = MdToHquest.new(quest_file).run
     end
 
@@ -15,8 +15,8 @@ module Modiz
       quest_hash = @run_case[:quest]
 
       assert_equal expected[:title], quest_hash[:title]
-      assert_match expected[:description], quest_hash[:description]
-      assert_match expected[:goals], quest_hash[:goal].first
+      assert_equal expected[:description], quest_hash[:description]
+      assert_equal expected[:goals], quest_hash[:goal]
     end
 
     def test_returns_challenge_part
@@ -25,8 +25,8 @@ module Modiz
 
       assert_equal expected[:title], challenge_hash[:title]
       assert_equal 3, challenge_hash[:criteria].count
-      assert_match expected[:criteria].first, challenge_hash[:criteria].first
-      assert_match expected[:description], challenge_hash[:description]
+      assert_equal expected[:criteria].first, challenge_hash[:criteria].first
+      assert_equal expected[:description], challenge_hash[:description]
     end
 
     def test_returns_step_part
@@ -35,17 +35,17 @@ module Modiz
 
       assert_equal 3, @run_case[:steps].count
       assert_equal expected[:title], first_step[:title]
-      assert_match expected[:description], first_step[:description]
+      assert_equal expected[:description], first_step[:description]
     end
 
     def test_returns_ressource_part
       expected = @output[:steps].first[:resources].first
       first_resource = @run_case[:steps].first[:resources].first
 
-      assert_equal 4, @run_case[:steps].first[:resources].count
-      assert_match expected[:title], first_resource[:title]
-      assert_match expected[:description], first_resource[:description]
-      assert_match expected[:url], first_resource[:url]
+      assert_equal 3, @run_case[:steps].first[:resources].count
+      assert_equal expected[:title], first_resource[:title]
+      assert_equal expected[:description], first_resource[:description]
+      assert_equal expected[:url], first_resource[:url]
     end
   end
 end
