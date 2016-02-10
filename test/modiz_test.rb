@@ -1,6 +1,7 @@
 require 'test_helper'
 require './test/quest_sample'
 
+
 module Modiz
   class MdToHquestTest < Minitest::Test
     def setup
@@ -30,14 +31,21 @@ module Modiz
 
     def test_returns_step_part
       expected = @output[:steps].first
-      steps_hash = @run_case[:steps].first
+      first_step = @run_case[:steps].first
 
       assert_equal 3, @run_case[:steps].count
-      assert_equal expected[:title], steps_hash[:title]
-      assert_match expected[:description], steps_hash[:description]
+      assert_equal expected[:title], first_step[:title]
+      assert_match expected[:description], first_step[:description]
+    end
 
-      assert_equal 3, @run_case[:steps].first[:resources].count
-      assert_match expected[:resources].first[:title], steps_hash[:resources].first[:title]
+    def test_returns_ressource_part
+      expected = @output[:steps].first[:resources].first
+      first_resource = @run_case[:steps].first[:resources].first
+
+      assert_equal 4, @run_case[:steps].first[:resources].count
+      assert_match expected[:title], first_resource[:title]
+      assert_match expected[:description], first_resource[:description]
+      assert_match expected[:url], first_resource[:url]
     end
   end
 end

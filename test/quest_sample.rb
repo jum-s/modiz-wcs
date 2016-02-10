@@ -7,9 +7,10 @@ class QuestSample
                 description: "Quand tu apprends de nouvelles notions" },
       steps: [ { title: "Gérer les dépendances d'un projet",
                 description: "Plutot que d'installer les dépendances à la main",
-                resources: [ { title: "Bundler's Purpose and Rationale",
-                               url: "http://www.izap4u.com",
-                               tag: ["foo", "bar", "baz"]},
+                resources: [ { title: "What is the Gemfile",
+                               url: "http://tosbourn.com/what-is-the-gemfile/",
+                               tag: ["foo", "bar", "baz"],
+                               description: "si la réponse commence"},
                              { title: "This is da best ressource ever",
                                url: "http://lequipe.fr",
                                tag: ["lulz", "quz"] } ]

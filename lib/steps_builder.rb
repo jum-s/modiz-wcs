@@ -10,7 +10,11 @@ module Modiz
     end
 
     def to_array
-      step_builder
+      steps.map do |step|
+        {     title: title(step),
+        description: description(step),
+          resources: resources(step) }
+      end
     end
 
     private
@@ -19,11 +23,12 @@ module Modiz
       @lines.split("\n### ").reject(&:empty?)
     end
 
-    def step_builder
-      steps.map do |step|
-        {     title: title(step),
-        description: description(step),
-          resources: ResourcesBuilder.new(step).to_hash }
+    def resources(step)
+      if step.match "#### Ressources"
+        ress = step.split("#### Ressources").last
+        ResourcesBuilder.new(ress).to_hash
+      else
+        nil
       end
     end
 

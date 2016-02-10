@@ -34,14 +34,19 @@ install` a fini de s'executer ?
 
 #### Ressources
 
-* [Bundler's Purpose and Rationale](http://bundler.io/rationale.html)
 * [What is the Gemfile](http://tosbourn.com/what-is-the-gemfile/)
   Quand tu spécifies la version d'une gem dans ton Gemfile, quelle est la
   diférence entre `gem "ma_gem", "~> 2.0"` et `gem "ma_gem", ">= 2.0"` ?
+  * `1` si la réponse commence par 'o', 'O', 'y' ou 'Y',
+  * `0` si la réponse commence par 'n' ou 'N',
+  * `-1` dans tous les autres cas.
+* [Bundler's Purpose and Rationale](http://bundler.io/rationale.html)
 * [Ruby toobox](https://www.ruby-toolbox.com/)
   Sachant que n'importe qui peux mettre une gem en ligne, sur quels critères
   peux-tu te baser pour évaluer la pertinence, la qualité et la bonne santé
   d'une gem avant de l'intégrer dans ton projet?
+* [from javascripting quest : Les interactions de base dans le navigateur](http://javascript.info/tutorial/user-interaction-alert-prompt-and-confirm)  
+Créé une page qui pose une question fermée (Oui/Non) au visiteur dans un prompt, puis qui affiche une alerte qui contient:
 
 ### Calculer son âge en jours
 
