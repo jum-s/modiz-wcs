@@ -24,7 +24,8 @@ Voici la définition d'une gem sur [rubygems.org](http://guides.rubygems.org/)
 ### Gérer les dépendances d'un projet
 
 Plutot que d'installer les dépendances à la main avec `gem install ma_gem` il est beaucoup plus pratique (et recommandé) de lister toutes les dépendances d'un projet dans un fichier nommé `Gemfile` qu'il faut créer à la racine du projet.
-Ensuite bundler se chargera de les installer avec `bundle install` exécuté depuis le même dossier.
+Ensuite bundler se chargera de les installer avec `bundle install` exécuté depuis
+le même dossier.
 
 L'intérêt principal du `Gemfile` est de permettre à d'autres developeurs d'installer rapidement les dépendances du projet pour commencer à travailler dessus.
 
@@ -33,12 +34,10 @@ install` a fini de s'executer ?
 
 #### Ressources
 
-* [What is the Gemfile](http://tosbourn.com/what-is-the-gemfile/)
-  Quand tu spécifies la version d'une gem dans ton Gemfile, quelle est la diférence entre `gem "ma_gem", "~> 2.0"` et `gem "ma_gem", ">= 2.0"` ?
-  * `1` si la réponse commence par 'o', 'O', 'y' ou 'Y',
-  * `0` si la réponse commence par 'n' ou 'N',
-  * `-1` dans tous les autres cas.
 * [Bundler's Purpose and Rationale](http://bundler.io/rationale.html)
+* [What is the Gemfile](http://tosbourn.com/what-is-the-gemfile/)
+  Quand tu spécifies la version d'une gem dans ton Gemfile, quelle est la
+  diférence entre `gem "ma_gem", "~> 2.0"` et `gem "ma_gem", ">= 2.0"` ?
 * [Ruby toobox](https://www.ruby-toolbox.com/)
   Sachant que n'importe qui peux mettre une gem en ligne, sur quels critères
   peux-tu te baser pour évaluer la pertinence, la qualité et la bonne santé
@@ -67,9 +66,9 @@ un fichier `learnings.log`:
 
 ## Challenge
 
-### Encoder du texte dans un QR Code
+### Encoder du texte dans un QR Code (Edited)
 
-Ta mission si tu l'acceptes est d'écrire un programme qui transforme une chaîne de caractères en un QRCode. 
+Ta mission si tu l'acceptes est d'écrire un programme qui transforme une chaîne de caractères en un QRCode. (Edited)
 
 En tant qu'utilisateur, quand je lance le programme avec `ruby le_nom_de_mon_fichier.rb`, le programme me demande de saisir du texte dans la console.  
 Quand je m'exécute et que je valide, le programme affiche un QRcode en mode texte dans la console généré à partir du texte que j'ai saisi.  
@@ -81,6 +80,7 @@ Et le programme génère un fichier `.png` de ce même QRCode qui s'enregistre d
 3. Crée un fichier `apelle_le_comme_tu_veux.rb` qui contient le script d'exécution du programme
 3. Push le tout sur ton compte github
 4. Poste le lien vers ton dépôt sur github en guise de solution
+5. (Edited)
 
 ### Critères de validation
 

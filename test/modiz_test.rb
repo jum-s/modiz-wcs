@@ -1,11 +1,12 @@
-require 'test_helper'
+require './test/test_helper'
 require 'yaml'
 
 
 module Modiz
+
   class MdToHquestTest < Minitest::Test
     def setup
-      quest_file = File.read('./test/bundler_et_le_gemfile.md')
+      quest_file = File.read('./test/samples/bundler_et_le_gemfile.md')
       @output = YAML.load(File.open("./test/quest_output.yml"))
       @run_case = MdToHquest.new(quest_file).run
     end
@@ -47,5 +48,21 @@ module Modiz
       assert_equal expected[:description], first_resource[:description]
       assert_equal expected[:url], first_resource[:url]
     end
-  end
+
+    def test_with_javascripting_file
+      quest_file = File.read('./test/samples/javascripting.md')
+      quest_hash = MdToHquest.new(quest_file).run
+
+      assert_equal 4, quest_hash[:steps].count
+      assert_equal 4, quest_hash[:challenge][:criteria].count
+      assert_nil quest_hash[:steps][3][:resources]
+    end
+
+    def test_with_invalid_markdown
+      quest_file = File.read('./test/samples/invalide_apprendre_le_markdown.md')
+      assert_raises InvalidQuest do
+        MdToHquest.new(quest_file).run
+      end
+   end
+ end
 end

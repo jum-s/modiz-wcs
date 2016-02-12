@@ -2,6 +2,7 @@ require 'modiz/version'
 require 'quest_builder'
 require 'challenge_builder'
 require 'steps_builder'
+require 'errors'
 
 module Modiz
   class MdToHquest

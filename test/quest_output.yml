@@ -30,6 +30,9 @@
       install` a fini de s'executer ?
     :resources:
       -
+        :title: Bundler's Purpose and Rationale
+        :url: http://bundler.io/rationale.html
+      -
         :title: What is the Gemfile
         :url: http://tosbourn.com/what-is-the-gemfile/
         :tag:
@@ -41,9 +44,6 @@
             * `1` si la réponse commence par 'o', 'O', 'y' ou 'Y',
             * `0` si la réponse commence par 'n' ou 'N',
             * `-1` dans tous les autres cas.
-      -
-        :title: Bundler's Purpose and Rationale
-        :url: http://bundler.io/rationale.html
       -
         :title: Ruby toobox
         :url: https://www.ruby-toolbox.com/

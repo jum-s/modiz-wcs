@@ -18,11 +18,8 @@ module Modiz
 
     def description resource
       description_index = resource.index(")")
-      if description_index < resource.length
-        resource[description_index + 1..-1].strip
-      else
-        ""
-      end
+      desc = resource[description_index + 1..-1].strip
+      nil if desc.empty?
     end
 
     def title resource
