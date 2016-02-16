@@ -10,6 +10,7 @@ module Modiz
       @resources.map do |str|
         {       title: title(str),
                   url: url(str),
+                  # tags: tags(str), TODO parseur de tags
           description: description(str) }
       end
     end

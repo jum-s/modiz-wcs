@@ -19,7 +19,7 @@ module Modiz
     end
 
     def description
-      raise InvalidQuest, 'Ta quête doit contenir des critères de validation !' unless criterias_index
+      raise InvalidQuest, 'Ta quête doit contenir des critères de validation ! #{TODO : donner les lignes qui foirent}' unless criterias_index
       @lines[title_index + 1...criterias_index].join.strip
     end
 
