@@ -15,7 +15,7 @@ module Modiz
     private
 
     def title
-      @lines[title_index].tr("###", "").strip
+      remove_markup @lines[title_index]
     end
 
     def description
@@ -25,8 +25,16 @@ module Modiz
 
     def criterias
       @lines[criterias_index + 1..-1]
-        .select{ |a| a.match(/\*(.*)|\+(.*)|\-(.*)$/)}
-        .map{ |crit| crit[/\w(.*)$/].strip}
+        .select{ |line| include_bullet_point line }
+        .map{ |crit| remove_markup crit }
+    end
+
+    def remove_markup string
+      string[/\w(.*)$/].strip
+    end
+
+    def include_bullet_point string
+      string.match(/\*(.*)|\+(.*)|\-(.*)$/)
     end
 
     def title_index

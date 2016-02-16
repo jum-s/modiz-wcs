@@ -43,7 +43,8 @@ module Modiz
     end
 
     def title_hashtags size
-      "\n#{"#" * size} "
+      hashtags = '#' * size
+      "\n#{hashtags} "
     end
 
     def double_line
