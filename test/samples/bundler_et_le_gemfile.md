@@ -84,7 +84,7 @@ Et le programme génère un fichier `.png` de ce même QRCode qui s'enregistre d
 
 ### Critères de validation
 
-* Le QRcode s'affiche dans la console
+ * Le QRcode s'affiche dans la console
 * Quand je scanne l'image générée je retrouve bien le texte qui a été encodé
 * La commande `bundle install` lancée depuis la racine du répertoire installe la gem 
 ainsi que ses dépendances
