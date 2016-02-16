@@ -10,7 +10,7 @@ module Modiz
     def to_hash
       {       title: title,
         description: description,
-               goal: goal }
+              goals: goals }
     end
 
     private
@@ -19,7 +19,7 @@ module Modiz
       @lines.first.tr("#", "").strip
     end
 
-    def goal
+    def goals
       @lines[goal_index + 1...-1]
         .select{ |a| a.match(/^\*(.*)|\+(.*)|\-(.*)$/)} # select only * + or - bullet list
         .map{ |goal| goal[/\w(.*)$/].strip}             # delete bullet

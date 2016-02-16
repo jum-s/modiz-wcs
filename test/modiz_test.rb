@@ -1,28 +1,26 @@
 require './test/test_helper'
 require 'yaml'
 
-
 module Modiz
-
-  class MdToHquestTest < Minitest::Test
+  class ParserTest < Minitest::Test
     def setup
       quest_file = File.read('./test/samples/bundler_et_le_gemfile.md')
       @output = YAML.load(File.open("./test/quest_output.yml"))
-      @run_case = MdToHquest.new(quest_file).run
+      @run_case = Parser.run(quest_file)
     end
 
     def test_returns_quest_part
       expected = @output[:quest]
-      quest_hash = @run_case[:quest]
+      quest_hash = @run_case[:quest_details]
 
       assert_equal expected[:title], quest_hash[:title]
       assert_equal expected[:description], quest_hash[:description]
-      assert_equal expected[:goals], quest_hash[:goal]
+      assert_equal expected[:goals], quest_hash[:goals]
     end
 
     def test_returns_challenge_part
       expected = @output[:challenge]
-      challenge_hash = @run_case[:challenge]
+      challenge_hash = @run_case[:challenge_details]
 
       assert_equal expected[:title], challenge_hash[:title]
       assert_equal 3, challenge_hash[:criteria].count
@@ -51,17 +49,17 @@ module Modiz
 
     def test_with_javascripting_file
       quest_file = File.read('./test/samples/javascripting.md')
-      quest_hash = MdToHquest.new(quest_file).run
+      quest_hash = Parser.run(quest_file)
 
       assert_equal 4, quest_hash[:steps].count
-      assert_equal 4, quest_hash[:challenge][:criteria].count
+      assert_equal 4, quest_hash[:challenge_details][:criteria].count
       assert_nil quest_hash[:steps][3][:resources]
     end
 
     def test_with_invalid_markdown
       quest_file = File.read('./test/samples/invalide_apprendre_le_markdown.md')
       assert_raises InvalidQuest do
-        MdToHquest.new(quest_file).run
+        Parser.run(quest_file)
       end
    end
  end

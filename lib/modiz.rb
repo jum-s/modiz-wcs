@@ -5,15 +5,19 @@ require 'steps_builder'
 require 'errors'
 
 module Modiz
-  class MdToHquest
-    def initialize(quest_file)
+  class Parser
+    def initialize quest_file
       @lines = quest_file.lines
     end
 
-    def run
-      {     quest: QuestBuilder.new(quest_lines).to_hash,
-            steps: StepsBuilder.new(steps_string).to_array,
-        challenge: ChallengeBuilder.new(challenge_lines).to_hash }
+    def self.run quest_file
+      new(quest_file).hash
+    end
+
+    def hash
+      {     quest_details: QuestBuilder.new(quest_lines).to_hash,
+                    steps: StepsBuilder.new(steps_string).to_array,
+        challenge_details: ChallengeBuilder.new(challenge_lines).to_hash }
     end
 
     private
