@@ -26,6 +26,7 @@ module Modiz
       assert_equal 3, challenge_hash[:criteria].count
       assert_equal expected[:criteria].first, challenge_hash[:criteria].first
       assert_equal expected[:description], challenge_hash[:description]
+      assert_match "ainsi que ses dépendances", challenge_hash[:criteria].last
     end
 
     def test_returns_step_part

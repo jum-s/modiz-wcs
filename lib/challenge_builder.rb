@@ -24,9 +24,7 @@ module Modiz
     end
 
     def criterias
-      @lines[criterias_index + 1..-1]
-        .select{ |line| include_bullet_point line }
-        .map{ |crit| remove_markup crit }
+      Modiz.listify @lines[criterias_index + 1..-1]
     end
 
     def remove_markup string

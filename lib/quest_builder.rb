@@ -20,9 +20,7 @@ module Modiz
     end
 
     def goals
-      @lines[goal_index + 1...-1]
-        .select{ |a| a.match(/^\*(.*)|\+(.*)|\-(.*)$/)} # select only * + or - bullet list
-        .map{ |goal| goal[/\w(.*)$/].strip}             # delete bullet
+      Modiz.listify @lines[goal_index + 1...-1]
     end
 
     def description

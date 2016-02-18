@@ -43,4 +43,10 @@ module Modiz
       @lines.index {|s| s.include?("## Challenge")}
     end
   end
+
+  def self.listify string
+    string.join.split(%r{\n\s*\*})
+          .map(&:strip)
+          .reject(&:empty?)
+  end
 end
