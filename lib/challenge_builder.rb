@@ -2,6 +2,7 @@ module Modiz
   class ChallengeBuilder
     def initialize(quest_lines)
       @lines = quest_lines
+      validations
     end
 
     attr_reader :to_hash
@@ -19,7 +20,6 @@ module Modiz
     end
 
     def description
-      raise InvalidQuest, 'Ta quête doit contenir des critères de validation ! #{TODO : donner les lignes qui foirent}' unless criterias_index
       @lines[title_index + 1...criterias_index].join.strip
     end
 
@@ -42,5 +42,23 @@ module Modiz
     def criterias_index
       @lines.find_index { |line| /\A### Crit/.match(line) }
     end
+
+    def validations
+      unless title_index
+        raise InvalidQuest, "Le fichier doit contenir un challenge avec un titre."
+      end
+
+      unless criterias_index
+        raise InvalidQuest, "Ta quête doit contenir le titre '### Critères de validation'."
+      end
+
+      if description.empty?
+        raise InvalidQuest, "Le challenge mérite d'être décrit."
+      end
+
+      if criterias.empty?
+        raise InvalidQuest, "Ta quête doit contenir une liste de critères."
+      end
+   end
   end
 end

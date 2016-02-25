@@ -33,6 +33,30 @@ module Modiz
       assert_match /Le fichier n'a pas de description de quêtes./, err.message
     end
 
+    def markdown_no_challenge
+      File.read('./test/samples/no_challenge.md')
+    end
+
+    def test_no_challenge_title
+      err = raise_error markdown_no_challenge
+      assert_match /Le fichier doit contenir un challenge avec un titre./, err.message
+    end
+
+    def test_no_challenge_criteria_markup
+      err = raise_error markdown_no_challenge + "\n\n### foo\n\n"
+      assert_match /Ta quête doit contenir le titre '### Critères de validation'/, err.message
+    end
+
+    def test_no_challenge_description
+      err = raise_error markdown_no_challenge + "\n\n### foo\n\n### Criteres"
+      assert_match /Le challenge mérite d'être décrit./, err.message
+    end
+
+    def test_no_challenge_criteria
+      err = raise_error markdown_no_challenge + "\n\n### foo\n\nfoo\n\n### Criteres"
+      assert_match /Ta quête doit contenir une liste de critères/, err.message
+    end
+
     def raise_error quest_file
       assert_raises InvalidQuest do
         Parser.run(quest_file)

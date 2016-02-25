@@ -3,8 +3,6 @@ module Modiz
   end
 end
 
-# Validation quest.title desc et goal
-# Validation challenge.title desc et critiria
 # Validation step.title
 # Validation ressource url
 
