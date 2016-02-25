@@ -22,13 +22,13 @@ module Modiz
     end
 
     def test_no_quest_objectif
-      quest_file = "# Apprendre le Markdown\n\n## Etapes\nfoo\n## Challenge\n\n"
+      quest_file = "# Apprendre le Markdown\n\n## Objectifs\n\n## Etapes\nfoo\n## Challenge\n\n"
       err = raise_error quest_file
       assert_match /Le fichier n'a pas d'objectif./, err.message
     end
 
     def test_no_quest_description
-      quest_file = "# Apprendre le Markdown\n\n## Objectifs\n\n## Etapes\nfoo\n## Challenge\n\n"
+      quest_file = "# Appprendre le Markdown\n\n## Objectifs\n* vivre\n\n## Etapes\nfoo\n## Challenge\n\n"
       err = raise_error quest_file
       assert_match /Le fichier n'a pas de description de quêtes./, err.message
     end

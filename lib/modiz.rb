@@ -41,7 +41,6 @@ module Modiz
     end
 
     def challenge_lines
-      raise InvalidQuest, 'Ta quête doit contenir un challenge !' unless challenge_index
       @lines[challenge_index..-1]
     end
 
