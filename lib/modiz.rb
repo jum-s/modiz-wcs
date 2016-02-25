@@ -27,6 +27,9 @@ module Modiz
       unless steps_index || challenge_index
         raise InvalidQuest, 'Le fichier doit contenir ## Etapes et ## Challenge, réfère toi au modèle NEW.md dans le dossier Draft'
       end
+      if steps_string.empty?
+        raise InvalidQuest, 'Le fichier doit contenir au moins une étape.'
+      end
     end
 
     def quest_lines
