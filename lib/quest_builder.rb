@@ -37,7 +37,7 @@ module Modiz
         raise InvalidQuest, "Le fichier n'a pas de titre de quête. Ce doit être la première ligne du fichier et commencer par '# '"
       end
 
-      unless goal_index
+      if goals.empty?
         raise InvalidQuest, "Le fichier n'a pas d'objectif. La Quête doit contenir une liste objectifs avant la section Etapes "
       end
 
