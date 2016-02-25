@@ -8,6 +8,7 @@ module Modiz
   class Parser
     def initialize quest_file
       @lines = quest_file.lines
+      validate_file_structure
     end
 
     def self.run quest_file
@@ -21,6 +22,12 @@ module Modiz
     end
 
     private
+
+    def validate_file_structure
+      unless steps_index || challenge_index
+        raise InvalidQuest, 'Le fichier doit contenir ## Etapes et ## Challenge, réfère toi au modèle NEW.md dans le dossier Draft'
+      end
+    end
 
     def quest_lines
       @lines[0...steps_index]
