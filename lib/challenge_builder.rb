@@ -45,19 +45,19 @@ module Modiz
 
     def validations
       unless title_index
-        raise InvalidQuest, "Le fichier doit contenir un challenge avec un titre."
+        raise InvalidQuest::NoChallengeTitle
       end
 
       unless criterias_index
-        raise InvalidQuest, "Ta quête doit contenir le titre '### Critères de validation'."
+        raise InvalidQuest::NoChallengeCriteriaMarkup
       end
 
       if description.empty?
-        raise InvalidQuest, "Le challenge mérite d'être décrit."
+        raise InvalidQuest::NoChallengeDescription
       end
 
       if criterias.empty?
-        raise InvalidQuest, "Ta quête doit contenir une liste de critères."
+        raise InvalidQuest::NoChallengeCriteria
       end
    end
   end

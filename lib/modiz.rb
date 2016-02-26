@@ -23,15 +23,6 @@ module Modiz
 
     private
 
-    def validate_file_structure
-      unless steps_index || challenge_index
-        raise InvalidQuest, 'Le fichier doit contenir ## Etapes et ## Challenge, réfère toi au modèle NEW.md dans le dossier Draft'
-      end
-      if steps_string.empty?
-        raise InvalidQuest, 'Le fichier doit contenir au moins une étape.'
-      end
-    end
-
     def quest_lines
       @lines[0...steps_index]
     end
@@ -50,6 +41,15 @@ module Modiz
 
     def challenge_index
       @lines.index {|s| s.include?("## Challenge")}
+    end
+
+    def validate_file_structure
+      unless steps_index || challenge_index
+        raise InvalidQuest::NoStepsNorChallenges
+      end
+      if steps_string.empty?
+        raise InvalidQuest::NoSteps
+      end
     end
   end
 

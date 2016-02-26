@@ -16,6 +16,7 @@ module Modiz
     end
 
     private
+
     def title
       @lines.first.tr("#", "").strip
     end
@@ -33,17 +34,9 @@ module Modiz
     end
 
     def validations
-      if title.empty?
-        raise InvalidQuest, "Le fichier n'a pas de titre de quête. Ce doit être la première ligne du fichier et commencer par '# '"
-      end
-
-      if goals.empty?
-        raise InvalidQuest, "Le fichier n'a pas d'objectif. La Quête doit contenir une liste objectifs avant la section Etapes "
-      end
-
-      if description.empty?
-        raise InvalidQuest, "Le fichier n'a pas de description de quêtes. Donnez un peu de contexte tout de même !"
-      end
+      raise InvalidQuest::NoQuestTitle if title.empty?
+      raise InvalidQuest::NoQuestObjectives if goals.empty?
+      raise InvalidQuest::NoQuestDescription if description.empty?
     end
   end
 end
