@@ -55,11 +55,24 @@ module Modiz
         "Ta quête doit contenir une liste de critères."
       end
     end
+
+    class InvalidLink < Standard
+      def initialize lien
+        @lien = lien
+      end
+
+      def message
+        if @lien.split(',').count > 1
+          "Les liens '#{@lien}' ne sont pas des URL valides"
+        else
+          "Le lien '#{@lien}' n'est pas une URL valide"
+        end
+      end
+    end
   end
 end
 
 # Validation step.title
-# Validation ressource url
 
 # SyntaxError blank lines before & after title
 # SyntaxError blank lines before & after list
