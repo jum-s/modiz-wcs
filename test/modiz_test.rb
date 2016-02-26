@@ -56,12 +56,5 @@ module Modiz
       assert_equal 4, quest_hash[:challenge_details][:criteria].count
       assert_nil quest_hash[:steps][3][:resources]
     end
-
-    def test_with_invalid_markdown
-      quest_file = File.read('./test/samples/invalide_apprendre_le_markdown.md')
-      assert_raises InvalidQuest do
-        Parser.run(quest_file)
-      end
-   end
  end
 end

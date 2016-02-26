@@ -44,21 +44,10 @@ module Modiz
     end
 
     def validations
-      unless title_index
-        raise InvalidQuest::NoChallengeTitle
-      end
-
-      unless criterias_index
-        raise InvalidQuest::NoChallengeCriteriaMarkup
-      end
-
-      if description.empty?
-        raise InvalidQuest::NoChallengeDescription
-      end
-
-      if criterias.empty?
-        raise InvalidQuest::NoChallengeCriteria
-      end
-   end
+      raise InvalidQuest::NoChallengeTitle unless title_index
+      raise InvalidQuest::NoChallengeCriteriaMarkup unless criterias_index
+      raise InvalidQuest::NoChallengeDescription if description.empty?
+      raise InvalidQuest::NoChallengeCriteria if criterias.empty?
+    end
   end
 end
