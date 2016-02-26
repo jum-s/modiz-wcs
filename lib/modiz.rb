@@ -44,12 +44,8 @@ module Modiz
     end
 
     def validate_file_structure
-      unless steps_index || challenge_index
-        raise InvalidQuest::NoStepsNorChallenges
-      end
-      if steps_string.empty?
-        raise InvalidQuest::NoSteps
-      end
+      raise InvalidQuest::NoStepsNorChallenges unless steps_index || challenge_index
+      raise InvalidQuest::NoSteps if steps_string.empty?
     end
   end
 
