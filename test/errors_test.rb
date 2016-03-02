@@ -13,6 +13,12 @@ module Modiz
       assert_raises InvalidQuest::NoSteps do ; Parser.run(quest_file) ; end
     end
 
+    def test_no_double_lines
+      quest_file = "\n\n## Etapes\n## Challenge\n\n"
+      err = assert_raises InvalidQuest::DoubleLineMissing do ; Parser.run(quest_file) ; end
+      assert_match /Tu n'as pas sauté de lignes/, err.message
+    end
+
     def test_invalid_link
       quest_file = "\n\n## Etapes\n\n## Challenge\n\n[url](wrong_link)"
       err = assert_raises InvalidQuest::InvalidLink do ; Parser.run(quest_file) ; end
@@ -26,17 +32,17 @@ module Modiz
     end
 
     def test_no_quest_title
-      quest_file = "\nfoo\n## Objectifs\n\n## Etapes\nfoo\n## Challenge\n\n"
+      quest_file = "\nfoo\n\n## Objectifs\n\n## Etapes\nfoo\n\n## Challenge\n\n"
       assert_raises InvalidQuest::NoQuestTitle do ; Parser.run(quest_file) ; end
     end
 
     def test_no_quest_objectif
-      quest_file = "# Apprendre le Markdown\n\n## Objectifs\n\n## Etapes\nfoo\n## Challenge\n\n"
+      quest_file = "# Apprendre le Markdown\n\n## Objectifs\n\n## Etapes\nfoo\n\n## Challenge\n\n"
       assert_raises InvalidQuest::NoQuestObjectives do ; Parser.run(quest_file) ; end
     end
 
     def test_no_quest_description
-      quest_file = "# Appprendre le Markdown\n\n## Objectifs\n* vivre\n\n## Etapes\nfoo\n## Challenge\n\n"
+      quest_file = "# Appprendre le Markdown\n\n## Objectifs\n* vivre\n\n## Etapes\nfoo\n\n## Challenge\n\n"
       assert_raises InvalidQuest::NoQuestDescription do ; Parser.run(quest_file) ; end
     end
 

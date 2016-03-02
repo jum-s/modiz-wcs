@@ -32,6 +32,8 @@
       -
         :title: Bundler's Purpose and Rationale
         :url: http://bundler.io/rationale.html
+        :description: |-
+          Foo
       -
         :title: What is the Gemfile
         :url: http://tosbourn.com/what-is-the-gemfile/

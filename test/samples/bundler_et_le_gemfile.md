@@ -34,6 +34,7 @@ install` a fini de s'executer ?
 #### Ressources
 
 * [Bundler's Purpose and Rationale](http://bundler.io/rationale.html)
+  Foo
 * [What is the Gemfile](http://tosbourn.com/what-is-the-gemfile/)
   Quand tu spécifies la version d'une gem dans ton Gemfile, quelle est la diférence entre `gem "ma_gem", "~> 2.0"` et `gem "ma_gem", ">= 2.0"` ?
     * `1` si la réponse commence par 'o', 'O', 'y' ou 'Y',

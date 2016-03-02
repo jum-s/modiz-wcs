@@ -69,6 +69,16 @@ module Modiz
         end
       end
     end
+
+    class DoubleLineMissing < Standard
+      def initialize line_index
+        @line_index = line_index
+      end
+
+      def message
+        "Tu n'as pas sauté de lignes après la(les) ligne(s): #{ @line_index.join(', ') }"
+      end
+    end
   end
 end
 
