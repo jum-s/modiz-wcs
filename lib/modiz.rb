@@ -7,7 +7,8 @@ require 'errors'
 module Modiz
   class Parser
     def initialize quest_file
-      @lines = quest_file.lines
+      @quest_file = quest_file
+      validate_double_lines_jump
       validate_links
       validate_file_structure
     end
@@ -25,23 +26,37 @@ module Modiz
     private
 
     def quest_lines
-      @lines[0...steps_index]
+      @quest_file.lines[0...steps_index]
     end
 
     def steps_string
-      @lines[steps_index + 1...challenge_index].join.strip
+      @quest_file.lines[steps_index + 1...challenge_index].join.strip
     end
 
     def challenge_lines
-      @lines[challenge_index..-1]
+      @quest_file.lines[challenge_index..-1]
     end
 
     def steps_index
-      @lines.index {|s| s.include?("## Etapes")}
+      @quest_file.lines.index {|s| s.include?("## Etapes")}
     end
 
     def challenge_index
-      @lines.index {|s| s.include?("## Challenge")}
+      @quest_file.lines.index {|s| s.include?("## Challenge")}
+    end
+
+    def validate_double_lines_jump
+      quest_parts = @quest_file.split "\n##"
+      quest_parts.pop
+      quest_parts.each do |quest_part|
+        raise InvalidQuest::DoubleLineMissing.new(wrong_lines_index(quest_part)) if quest_part[-1] != "\n"
+      end
+    end
+
+    def wrong_lines_index quest_part
+      @quest_file.lines.map do |line|
+        @quest_file.lines.index(line) if line.include?(quest_part.lines.last)
+      end.compact
     end
 
     def validate_file_structure
@@ -57,7 +72,7 @@ module Modiz
     end
 
     def every_urls
-      @lines.map{|url| url.scan(/]\(([^)]+)\)/)}.flatten
+      @quest_file.lines.map{|url| url.scan(/]\(([^)]+)\)/)}.flatten
     end
 
     def valid_format? url
