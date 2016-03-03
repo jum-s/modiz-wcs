@@ -1,4 +1,5 @@
 require 'modiz/version'
+require 'builder'
 require 'quest_builder'
 require 'challenge_builder'
 require 'steps_builder'
@@ -17,12 +18,19 @@ module Modiz
     end
 
     def hash
-      {     quest_details: QuestBuilder.new(quest_lines).to_hash,
-                    steps: StepsBuilder.new(steps_string).to_array,
-        challenge_details: ChallengeBuilder.new(challenge_lines).to_hash }
+      {     quest_details: QuestBuilder.run(quest_lines),
+                    steps: steps,
+        challenge_details: ChallengeBuilder.run(challenge_lines) }
     end
 
     private
+
+    def steps
+      steps = steps_string.split(Modiz.title_hashtags(3)).reject(&:empty?)
+      steps.map do |step|
+        StepBuilder.run step
+      end
+    end
 
     def quest_lines
       @quest_file.lines[0...steps_index]
@@ -65,5 +73,10 @@ module Modiz
     string.join.split(%r{\n\s*\*})
           .map(&:strip)
           .reject(&:empty?)
+  end
+
+  def self.title_hashtags size
+    hashtags = '#' * size
+    "\n#{hashtags} "
   end
 end

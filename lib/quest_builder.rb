@@ -1,7 +1,7 @@
 require 'pry'
 
 module Modiz
-  class QuestBuilder
+  class QuestBuilder < Builder
     attr_reader :to_hash
 
     def initialize(quest_lines)
