@@ -63,17 +63,17 @@ module Modiz
     end
 
     def test_no_challenge_criteria_markup
-      quest_file = markdown_no_challenge + "\n\n### foo\n\n"
+      quest_file = markdown_no_challenge + "\n\n### Titre\n\n"
       assert_raises InvalidQuest::NoChallengeCriteriaMarkup do ; Parser.run(quest_file) ; end
     end
 
     def test_no_challenge_description
-      quest_file = markdown_no_challenge + "\n\n### foo\n\n### Critères de validation"
+      quest_file = markdown_no_challenge + "\n\n### Titre\n\n### Critères de validation"
       assert_raises InvalidQuest::NoChallengeDescription do ; Parser.run(quest_file) ; end
     end
 
     def test_no_challenge_criteria
-      quest_file = markdown_no_challenge + "\n\n### foo\n\nfoo\n\n### Critères de validation"
+      quest_file = markdown_no_challenge + "\n\n### Titre\n\nfoo\n\n### Critères de validation"
       assert_raises InvalidQuest::NoChallengeCriteria do ; Parser.run(quest_file) ; end
     end
     def markdown_no_challenge
