@@ -1,8 +1,8 @@
 require 'modiz/version'
 require 'builder'
 require 'quest_builder'
-require 'challenge_builder'
 require 'steps_builder'
+require 'challenge_builder'
 require 'errors'
 require 'validator'
 

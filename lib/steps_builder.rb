@@ -7,6 +7,7 @@ module Modiz
 
     def initialize step
       @step = step
+      raise InvalidQuest::NoStepTitle unless has_title?
     end
 
     def to_hash
@@ -27,6 +28,10 @@ module Modiz
       else
         nil
       end
+    end
+
+    def has_title?
+      !!step.match("### ")
     end
 
     def title

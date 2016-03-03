@@ -57,6 +57,11 @@ module Modiz
       assert_raises InvalidQuest::NoQuestDescription do ; Parser.run(quest_file) ; end
     end
 
+    def test_no_step_title
+      quest_file = "# Appprendre le Markdown\nfoo\n\n## Objectifs\n* vivre\n\n## Etapes\nfoo\n\n## Challenge\n\nfoo"
+      assert_raises InvalidQuest::NoStepTitle do ; Parser.run(quest_file) ; end
+    end
+
     def test_no_challenge_title
       quest_file = markdown_no_challenge
       assert_raises InvalidQuest::NoChallengeTitle do ; Parser.run(quest_file) ; end
@@ -76,6 +81,7 @@ module Modiz
       quest_file = markdown_no_challenge + "\n\n### Titre\n\nfoo\n\n### Critères de validation"
       assert_raises InvalidQuest::NoChallengeCriteria do ; Parser.run(quest_file) ; end
     end
+
     def markdown_no_challenge
       File.read('./test/samples/no_challenge.md')
     end
