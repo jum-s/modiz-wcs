@@ -2,15 +2,27 @@ module Modiz
   class InvalidQuest < Exception
     class Standard < StandardError; end
 
-    class NoStepsNorChallenges < Standard
+    class NoStepDelimiter < Standard
       def message
-        "Le fichier doit contenir ## Etapes et ## Challenge, réfère toi au modèle NEW.md dans le dossier Draft"
+        "Le fichier doit contenir ## Etapes, réfère toi au modèle NEW.md dans le dossier Draft"
       end
     end
 
-    class NoSteps < Standard
+    class NoChallengeDelimiter < Standard
       def message
-        "Le fichier doit contenir au moins une étape."
+        "Le fichier doit contenir ## Challenge, réfère toi au modèle NEW.md dans le dossier Draft"
+      end
+    end
+
+    class NoStepsContent < Standard
+      def message
+        "Le fichier doit contenir au moins une étape, avec un titre et une description."
+      end
+    end
+
+    class NoChallengeContent < Standard
+      def message
+        "Le fichier doit contenir un challenge avec un titre, une description et des critères de validation."
       end
     end
 
@@ -82,7 +94,10 @@ module Modiz
   end
 end
 
+# Validation quest.title desc et goal
+# Validation challenge.title desc et critiria
 # Validation step.title
+# Validation ressource url
 
 # SyntaxError blank lines before & after title
 # SyntaxError blank lines before & after list

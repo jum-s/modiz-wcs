@@ -9,8 +9,7 @@ module Modiz
   class Parser
     def initialize quest_file
       @quest_file = quest_file
-      Validator.run @quest_file
-      validate_file_structure
+      validate_good_markdown
     end
 
     def self.run quest_file
@@ -45,9 +44,20 @@ module Modiz
       @quest_file.lines.index {|s| s.include?("## Challenge")}
     end
 
+    def validate_good_markdown
+      Validator.run @quest_file
+      validate_file_structure
+      validate_file_content
+    end
+
     def validate_file_structure
-      raise InvalidQuest::NoStepsNorChallenges unless steps_index || challenge_index
-      raise InvalidQuest::NoSteps if steps_string.empty?
+      raise InvalidQuest::NoStepDelimiter unless steps_index
+      raise InvalidQuest::NoChallengeDelimiter unless challenge_index
+    end
+
+    def validate_file_content
+      raise InvalidQuest::NoStepsContent if steps_string.empty?
+      raise InvalidQuest::NoChallengeContent if challenge_lines.join.strip == "## Challenge"
     end
   end
 
