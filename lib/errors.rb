@@ -44,6 +44,12 @@ module Modiz
       end
     end
 
+    class NoStepTitle < Standard
+      def message
+        "Je n'ai réussi a trouver le titre de l'étape."
+      end
+    end
+
     class NoChallengeTitle < Standard
       def message
         "Le fichier doit contenir un challenge avec un titre."
