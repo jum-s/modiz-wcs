@@ -42,24 +42,24 @@ module Modiz
       assert_match /Les liens 'wrong_link, second_wrong_link' ne sont pas des URL valides/, err.message
     end
 
-    def test_no_quest_title
+    def test_no_step_title
       quest_file = "\nfoo\n\n## Objectifs\n\n## Etapes\nfoo\n\n## Challenge\n\nfoo"
+      assert_raises InvalidQuest::NoStepTitle do ; Parser.run(quest_file) ; end
+    end
+
+    def test_no_quest_title
+      quest_file = "\nfoo\n\n## Objectifs\n\n## Etapes\n\n### foo\n\n## Challenge\n\nfoo"
       assert_raises InvalidQuest::NoQuestTitle do ; Parser.run(quest_file) ; end
     end
 
     def test_no_quest_objectif
-      quest_file = "# Apprendre le Markdown\n\n## Objectifs\n\n## Etapes\nfoo\n\n## Challenge\n\nfoo"
+      quest_file = "# Apprendre le Markdown\n\n## Objectifs\n\n## Etapes\n\n### foo\n\n## Challenge\n\nfoo"
       assert_raises InvalidQuest::NoQuestObjectives do ; Parser.run(quest_file) ; end
     end
 
     def test_no_quest_description
-      quest_file = "# Appprendre le Markdown\n\n## Objectifs\n* vivre\n\n## Etapes\nfoo\n\n## Challenge\n\nfoo"
+      quest_file = "# Appprendre le Markdown\n\n## Objectifs\n* vivre\n\n## Etapes\n\n### foo\n\n## Challenge\n\nfoo"
       assert_raises InvalidQuest::NoQuestDescription do ; Parser.run(quest_file) ; end
-    end
-
-    def test_no_step_title
-      quest_file = "# Appprendre le Markdown\nfoo\n\n## Objectifs\n* vivre\n\n## Etapes\nfoo\n\n## Challenge\n\nfoo"
-      assert_raises InvalidQuest::NoStepTitle do ; Parser.run(quest_file) ; end
     end
 
     def test_no_challenge_title

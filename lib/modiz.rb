@@ -19,13 +19,13 @@ module Modiz
 
     def hash
       {     quest_details: QuestBuilder.run(quest_lines),
-                    steps: steps,
+                    steps: steps_wrapper,
         challenge_details: ChallengeBuilder.run(challenge_lines) }
     end
 
     private
 
-    def steps
+    def steps_wrapper
       steps = steps_string.split(Modiz.title_hashtags(3)).reject(&:empty?)
       steps.map do |step|
         StepBuilder.run step
@@ -56,6 +56,7 @@ module Modiz
       Validator.run @quest_file
       validate_file_structure
       validate_file_content
+      validate_no_step_title
     end
 
     def validate_file_structure
@@ -66,6 +67,14 @@ module Modiz
     def validate_file_content
       raise InvalidQuest::NoStepsContent if steps_string.empty?
       raise InvalidQuest::NoChallengeContent if challenge_lines.join.strip == "## Challenge"
+    end
+
+    def validate_no_step_title
+      raise InvalidQuest::NoStepTitle unless has_titles?
+    end
+
+    def has_titles?
+      steps_string.scan("### ").any?
     end
   end
 
