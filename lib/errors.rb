@@ -46,7 +46,7 @@ module Modiz
 
     class NoStepTitle < Standard
       def message
-        "Je n'ai réussi a trouver le titre de l'étape."
+        "Je n'ai pas réussi a trouver le titre de l'étape."
       end
     end
 
