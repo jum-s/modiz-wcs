@@ -3,7 +3,7 @@ require 'builder'
 require 'quest_builder'
 require 'steps_builder'
 require 'challenge_builder'
-require 'errors'
+require 'errors/invalid_quest'
 require 'validator'
 
 module Modiz
