@@ -25,56 +25,48 @@ module Modiz
 
     private
 
+    def validate_good_markdown
+      validation_arguments = {file: @quest_file,
+        steps_index: steps_index,
+        challenge_index: challenge_index,
+        steps_lines: steps_lines,
+        challenge_lines: challenge_lines }
+      Validator.run validation_arguments
+    end
+
     def steps_wrapper
-      steps = steps_string.split(Modiz.title_hashtags(3)).reject(&:empty?)
+      steps = steps_lines.join.strip.split(Modiz.title_hashtags(3)).reject(&:empty?)
       steps.map do |step|
         StepBuilder.run step
       end
     end
 
     def quest_lines
-      @quest_file.lines[0...steps_index]
+      lines_of 0...steps_index
     end
 
-    def steps_string
-      @quest_file.lines[steps_index + 1...challenge_index].join.strip
+    def steps_lines
+      lines_of steps_index + 1...challenge_index if steps_index && challenge_index
     end
 
     def challenge_lines
-      @quest_file.lines[challenge_index..-1]
+      lines_of challenge_index..-1 if challenge_index
     end
 
     def steps_index
-      @quest_file.lines.index {|s| s.include?("## Etapes")}
+      find_index '## Etapes'
     end
 
     def challenge_index
-      @quest_file.lines.index {|s| s.include?("## Challenge")}
+      find_index '## Challenge'
     end
 
-    def validate_good_markdown
-      Validator.run @quest_file
-      validate_file_structure
-      validate_file_content
-      validate_no_step_title
+    def lines_of section
+      @quest_file.lines[section]
     end
 
-    def validate_file_structure
-      raise InvalidQuest::NoStepDelimiter unless steps_index
-      raise InvalidQuest::NoChallengeDelimiter unless challenge_index
-    end
-
-    def validate_file_content
-      raise InvalidQuest::NoStepsContent if steps_string.empty?
-      raise InvalidQuest::NoChallengeContent if challenge_lines.join.strip == "## Challenge"
-    end
-
-    def validate_no_step_title
-      raise InvalidQuest::NoStepTitle unless has_titles?
-    end
-
-    def has_titles?
-      steps_string.scan("### ").any?
+    def find_index section
+      @quest_file.lines.index {|s| s.include?(section)}
     end
   end
 
