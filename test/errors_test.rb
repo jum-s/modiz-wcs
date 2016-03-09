@@ -33,13 +33,13 @@ module Modiz
     def test_invalid_link
       quest_file = "\n\n## Etapes\nfoo\n\n## Challenge\n\n[url](wrong_link)"
       err = assert_raises InvalidQuest::InvalidLink do ; Parser.run(quest_file) ; end
-      assert_match /Le lien 'wrong_link' n'est pas une URL valide/, err.message
+      assert_match /wrong_link/, err.message
     end
 
     def test_several_invalid_links
       quest_file = "\n\n## Etapes\nfoo\n\n## Challenge\n\n[url](wrong_link)[url](second_wrong_link)"
       err = assert_raises InvalidQuest::InvalidLink do ; Parser.run(quest_file) ; end
-      assert_match /Les liens 'wrong_link, second_wrong_link' ne sont pas des URL valides/, err.message
+      assert_match /wrong_link, second_wrong_link/, err.message
     end
 
     def test_no_step_title
