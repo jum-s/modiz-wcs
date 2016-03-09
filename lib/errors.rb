@@ -4,55 +4,55 @@ module Modiz
 
     class NoStepDelimiter < Standard
       def message
-        "Le fichier doit contenir ## Etapes, réfère toi au modèle NEW.md dans le dossier Draft"
+        "Je ne reconnais pas de ligne qui contient ## Etapes, réfère toi au modèle NEW.md dans le dossier Draft"
       end
     end
 
     class NoChallengeDelimiter < Standard
       def message
-        "Le fichier doit contenir ## Challenge, réfère toi au modèle NEW.md dans le dossier Draft"
+        "Je ne reconnais pas de ligne qui contient ## Challenge, réfère toi au modèle NEW.md dans le dossier Draft"
       end
     end
 
     class NoStepsContent < Standard
       def message
-        "Le fichier doit contenir au moins une étape, avec un titre et une description."
+        "Je ne reconnais pas de lignes qui contient au moins une étape, avec un titre et une description."
       end
     end
 
     class NoChallengeContent < Standard
       def message
-        "Le fichier doit contenir un challenge avec un titre, une description et des critères de validation."
+        "Je ne reconnais pas la ligne un challenge avec un titre, une description et des critères de validation."
       end
     end
 
     class NoQuestTitle < Standard
       def message
-        "Le fichier n'a pas de titre de quête. Ce doit être la première ligne du fichier et commencer par '# '"
+        "Je ne reconnais pas le titre de quête. Ce doit être la première ligne du fichier et commencer par '# '"
       end
     end
 
     class NoQuestObjectives < Standard
       def message
-        "Le fichier n'a pas d'objectif. La Quête doit contenir une liste objectifs avant la section Etapes "
+        "Je ne reconnais pas l'objectif. La Quête doit contenir une liste objectifs avant la section Etapes "
       end
     end
 
     class NoQuestDescription < Standard
       def message
-        "Le fichier n'a pas de description de quêtes. Donnez un peu de contexte tout de même !"
+        "Je ne reconnais pas le description de quêtes. Donnez un peu de contexte tout de même !"
       end
     end
 
     class NoStepTitle < Standard
       def message
-        "Je n'ai pas réussi a trouver le titre de l'étape."
+        "Je n'ai pas réussi à trouver le titre de l'étape. La section étapes doit se diviser en plusieurs titres d'étapes commençant par '### ' "
       end
     end
 
     class NoChallengeTitle < Standard
       def message
-        "Le fichier doit contenir un challenge avec un titre."
+        "Je ne reconnais aucun titre pour le challenge."
       end
     end
 
@@ -64,7 +64,7 @@ module Modiz
 
     class NoChallengeDescription < Standard
       def message
-        "Le challenge mérite d'être décrit."
+        "Le challenge mérite d'être décrit, non ?"
       end
     end
 
@@ -81,9 +81,9 @@ module Modiz
 
       def message
         if @lien.split(',').count > 1
-          "Les liens '#{@lien}' ne sont pas des URL valides"
+          "Les liens '#{@lien}' ne sont pas des URL valides. Elles commencent par 'http' !"
         else
-          "Le lien '#{@lien}' n'est pas une URL valide"
+          "Le lien '#{@lien}' n'est pas une URL valide. Elles commencent par 'http' !"
         end
       end
     end
@@ -94,11 +94,8 @@ module Modiz
       end
 
       def message
-        "Tu n'as pas sauté de lignes après la(les) ligne(s): #{ @line_index.join(', ') }"
+        "Tu n'as pas sauté de lignes après chaque titre ou liste. Notamment sur la(les) ligne(s): #{ @line_index.join(', ') }"
       end
     end
   end
 end
-
-# Validation step.title
-

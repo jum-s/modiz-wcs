@@ -5,13 +5,13 @@ module Modiz
   class ParserTest < Minitest::Test
     def test_invalid_step_delimiter
       err = assert_raises InvalidQuest::NoStepDelimiter do ; Parser.run('') ; end
-      assert_match /Le fichier doit contenir ## Etapes/, err.message
+      assert_match /Je ne reconnais pas de ligne qui contient ## Etapes/, err.message
     end
 
     def test_invalid_challenge_delimiter
       quest_file = "\n\n## Etapes"
       err = assert_raises InvalidQuest::NoChallengeDelimiter do ; Parser.run(quest_file) ; end
-      assert_match /Le fichier doit contenir ## Challenge/, err.message
+      assert_match /Je ne reconnais pas de ligne qui contient ## Challenge/, err.message
     end
 
     def test_no_step_content
