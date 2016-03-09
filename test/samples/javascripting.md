@@ -29,6 +29,7 @@ Réaliser les 6 exercices d'introduction du tutoriel.
 `javascript` `elearning`
 
 ### Javascripting dans le terminal
+
 Après un démarrage dans un environnement familier (le navigateur). La suite de l'aventure se déroule dans le terminal. Une interface texte graphiquement minimaliste, mais qui dispose d'une infinité de fonctionalités pour interagir avec la machine en toute franchise.
 
 #### Ressources
@@ -62,6 +63,7 @@ Parce qu'il n'y en aura pas toujours
 ... des ressources.
 
 ## Challenge
+
 ### Afficher un tas de patates
 
   1. Créer une page HTML contenant un script qui pose la question `"Hey mon ami ! Tu aimes ça les patates ?"` au visiteur.

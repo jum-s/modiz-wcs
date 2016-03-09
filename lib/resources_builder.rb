@@ -20,7 +20,6 @@ module Modiz
     def description resource
       description_index = resource.index(")")
       desc = resource[description_index + 1..-1].strip
-      nil if desc.empty?
     end
 
     def title resource

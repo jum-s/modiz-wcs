@@ -1,7 +1,8 @@
 module Modiz
-  class ChallengeBuilder
+  class ChallengeBuilder < Builder
     def initialize(quest_lines)
       @lines = quest_lines
+      validations
     end
 
     attr_reader :to_hash
@@ -19,7 +20,6 @@ module Modiz
     end
 
     def description
-      raise InvalidQuest, 'Ta quête doit contenir des critères de validation ! #{TODO : donner les lignes qui foirent}' unless criterias_index
       @lines[title_index + 1...criterias_index].join.strip
     end
 
@@ -41,6 +41,13 @@ module Modiz
 
     def criterias_index
       @lines.find_index { |line| /\A### Crit/.match(line) }
+    end
+
+    def validations
+      raise InvalidQuest::NoChallengeTitle unless title_index
+      raise InvalidQuest::NoChallengeCriteriaMarkup unless criterias_index
+      raise InvalidQuest::NoChallengeDescription if description.empty?
+      raise InvalidQuest::NoChallengeCriteria if criterias.empty?
     end
   end
 end

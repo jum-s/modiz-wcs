@@ -1,9 +1,10 @@
 module Modiz
-  class QuestBuilder
+  class QuestBuilder < Builder
     attr_reader :to_hash
 
     def initialize(quest_lines)
       @lines = quest_lines
+      validations
     end
 
     def to_hash
@@ -28,6 +29,12 @@ module Modiz
 
     def goal_index
       @lines.index {|s| s.include?("## Objectifs")}
+    end
+
+    def validations
+      raise InvalidQuest::NoQuestTitle if title.empty?
+      raise InvalidQuest::NoQuestObjectives if goals.empty?
+      raise InvalidQuest::NoQuestDescription if description.empty?
     end
   end
 end
