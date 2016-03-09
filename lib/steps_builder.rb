@@ -1,5 +1,4 @@
 require 'resources_builder'
-require 'pry'
 
 module Modiz
   class StepsBuilder

@@ -1,4 +1,3 @@
-require 'pry'
 module Modiz
   class QuestBuilder
     attr_reader :to_hash
