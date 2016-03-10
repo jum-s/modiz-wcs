@@ -1,12 +1,7 @@
-require 'yaml'
+require_relative 'error_message'
 
 module Modiz
   class InvalidQuest < Exception
-    def self.load_messages klass
-      error_messages = YAML.load_stream(File.read('lib/errors/messages.yml')).first
-      error_messages[klass.split('::').last]
-    end
-
     class Standard < StandardError
       def initialize *param
         @param = param
@@ -15,6 +10,10 @@ module Modiz
       def message
         InvalidQuest.load_messages(self.to_s) + @param.to_s
       end
+    end
+
+    def self.load_messages klass
+      Modiz.error_messages[klass.split('::').last.to_sym]
     end
 
     class NoStepDelimiter           < Standard; end
