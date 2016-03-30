@@ -32,8 +32,8 @@ module Modiz
     class NoChallengeCriteriaMarkup < Standard; end
     class NoChallengeDescription    < Standard; end
     class NoChallengeCriteria       < Standard; end
-    class NoStepTitle               < Standard ; def initialize wrong_line ; super ; end ; end
-    class InvalidLink               < Standard ; def initialize wrong_line ; super ; end ; end
-    class DoubleLineMissing         < Standard ; def initialize wrong_line ; super ; end ; end
+    class NoStepTitle               < Standard; end
+    class InvalidLink               < Standard; end
+    class DoubleLineMissing         < Standard; end
   end
 end
