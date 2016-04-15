@@ -66,9 +66,9 @@ un fichier `learnings.log`:
 
 ## Challenge
 
-### Encoder du texte dans un QR Code
+### Encoder du texte dans un QR Code (Edited)
 
-Ta mission si tu l'acceptes est d'écrire un programme qui transforme une chaîne de caractères en un QRCode. 
+Ta mission si tu l'acceptes est d'écrire un programme qui transforme une chaîne de caractères en un QRCode. (Edited)
 
 En tant qu'utilisateur, quand je lance le programme avec `ruby le_nom_de_mon_fichier.rb`, le programme me demande de saisir du texte dans la console.  
 Quand je m'exécute et que je valide, le programme affiche un QRcode en mode texte dans la console généré à partir du texte que j'ai saisi.  
@@ -80,6 +80,7 @@ Et le programme génère un fichier `.png` de ce même QRCode qui s'enregistre d
 3. Crée un fichier `apelle_le_comme_tu_veux.rb` qui contient le script d'exécution du programme
 3. Push le tout sur ton compte github
 4. Poste le lien vers ton dépôt sur github en guise de solution
+5. (Edited)
 
 ### Critères de validation
 
